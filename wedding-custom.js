@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ['05.12.2026', '20/12/2026'], ['Saturday, 5 December 2026', '20/12/2026'],
       ['Mikkson Onas Hall', 'Ayetoro'], ['64, Bola Ahmad Tinubu Way, Agbele Road, Igbogbo Stadium, Ikorodu, Lagos State', 'Ayetoro'],
       ['From anywhere, get to Ikorodu Garage, enter a tricycle or bus going to Igbogbo, and alight at NEPA Bus Stop. The venue is a 5-minute walk to your right, or you can take a bike (okada) straight to the venue.', 'From (Lagos) Iyana Iba / Iyanapaja → Ayobo → Ayetoro, drop at Abestos. Cross the road, drive, ride/walk forward and you are there.'],
-      ['#FLOURISHEDHYACINTH', '#GrammaticalManagement'], ['#LEGALLYCHARTERED', "#Abū/Umm'AbdilLāh"], ['#HEARTYFREESIAS', '#DinhoD-Simah'],
+      ['#FLOURISHEDHYACINTH', '#DINHO:D-SIMAH'], ['#LEGALLYCHARTERED', '#SPECIALCOORDINATOR'], ['#HEARTYFREESIAS', '#THESMILINGONE'],
       ['Nude', 'Navy blue'], ['Burnt orange', 'Navy blue'], ['Wine', 'Navy blue'],
       ['30 November 2026', '20/12/2026'], ['7 November 2026', '20/12/2026']
     ];
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "Introduction of the Groom and Bride",
       "Introduction of the Groom and Bride's family",
       "Lecture - Sheikh Tajudeen Uthmān (Mudeer Ma'had Uthmān bn Affan) حفظه اللّه",
-      "Ewi",
+      "Ewi - Alagbade Ọrọ (Oba Akewi) حفظه اللّه",
       "Advice to the Couple 1 - Sheikh Bidmasii Abdulwāsii' (Cheif Imām Baruwa Central Mosque, Lagos) حفظه اللّه",
       "Advice to the Couple 2 - Sheikh Jubril Adeyemi Aluko (Grand Cheif Imām Edu Land) حفظه اللّه",
       "Qasīdah - Ustādh Sãdiq Opeyemi Isah Abū Nabīlah (As-Saoty) حفظه اللّه",
@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const siteCredit=document.querySelector('.credit-line');
   if(siteCredit) siteCredit.innerHTML='Developed by <strong><em>Khalid Mogaji</em></strong> · <strong><em>09167850300</em></strong> · © 2026';
   const allLeaves=[...document.querySelectorAll('body *')].filter(n=>n.children.length===0);
-  const footerHashtags=allLeaves.filter(n=>/FLOURISHEDHYACINTH|LEGALLYCHARTERED|HEARTYFREESIAS/i.test(n.textContent));
-  footerHashtags.forEach((el,i)=>el.textContent=["#GrammaticalManagement","#Abū/Umm'AbdilLāh",'#DinhoD-Simah'][i%3]);
+  const footerHashtags=allLeaves.filter(n=>/DINHO[:;]D-SIMAH|SPECIALCOORDINATOR|THESMILINGONE|FLOURISHEDHYACINTH|LEGALLYCHARTERED|HEARTYFREESIAS/i.test(n.textContent));
+  footerHashtags.forEach((el,i)=>el.textContent=['#DINHO:D-SIMAH','#SPECIALCOORDINATOR','#THESMILINGONE'][i%3]);
   const oldVerse=[...document.querySelectorAll('body *')].find(n=>n.children.length===0&&n.textContent.includes('And of His signs is that He created'));
   const verseSection=oldVerse?.closest('section');
   if(verseSection){
