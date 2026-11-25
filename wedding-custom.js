@@ -1,5 +1,28 @@
+const removeLegacyWelcome=()=>{
+  let removed=false;
+  document.querySelectorAll('.curtain,#welcome,.welcome,.welcome-screen,.welcome-overlay,.welcome-curtain').forEach(node=>{node.remove();removed=true;});
+  const oldGreeting=[...document.querySelectorAll('body *')].find(node=>node.children.length===0&&node.textContent.includes('This is your go-to place for everything you need to know'));
+  if(oldGreeting){
+    let target=oldGreeting;
+    for(let parent=oldGreeting.parentElement;parent&&parent!==document.body&&parent.id!=='root';parent=parent.parentElement){
+      const style=getComputedStyle(parent);
+      const rect=parent.getBoundingClientRect();
+      if(parent.matches('[role="dialog"],[aria-modal="true"]')||/welcome|curtain|intro/i.test(`${parent.id} ${parent.className}`)||((style.position==='fixed'||Number(style.zIndex)>0)&&rect.width>=innerWidth*.8&&rect.height>=innerHeight*.8)) target=parent;
+      if(target!==oldGreeting&&target.matches('[role="dialog"],[aria-modal="true"]')) break;
+      if(parent.id==='root')break;
+    }
+    (target===oldGreeting?oldGreeting.parentElement:target)?.remove();
+    removed=true;
+  }
+  return removed;
+};
+removeLegacyWelcome();
+if(document.body){
+  const legacyWelcomeObserver=new MutationObserver(()=>{if(removeLegacyWelcome())legacyWelcomeObserver.disconnect();});
+  legacyWelcomeObserver.observe(document.body,{childList:true,subtree:true,characterData:true});
+}
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.curtain,#welcome').forEach(node=>node.remove());
+  removeLegacyWelcome();
   const capturedStaticHeart=[...document.querySelectorAll('#root div[style]')].find(node=>node.style.position==='fixed'&&node.style.zIndex==='999'&&node.style.pointerEvents==='none'&&node.querySelector('svg path[d^="M12 21s"]'));
   capturedStaticHeart?.remove();
   const welcomeMarkup='<div class="am-welcome-screen" role="dialog" aria-modal="true" aria-labelledby="am-welcome-title"><div class="am-welcome-content"><h1 id="am-welcome-title">A.M AFFAIRS \'26</h1><p class="am-welcome-subtitle">Walīmatu - n - Nikāh</p><p class="am-welcome-arabic" lang="ar" dir="rtl">بسم اللّه الرّحمن الرّحيم</p><p class="am-welcome-invitation">Following the solemnization of our marriage, out of immense love and joy, we humbly invite you to our Walīmatu - n - Nikāh.</p><p class="am-welcome-names">ADEKANMBI ABDULHAMEED <span>&amp;</span> OMOTOSHO MUTMAINNAH</p><p class="am-welcome-date">20/12/2026</p><button type="button" class="am-welcome-enter" aria-label="Enter the wedding website"><span class="am-welcome-arrow" aria-hidden="true">↓</span><small>TAP TO ENTER</small></button></div></div>';
@@ -121,10 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if(heroTags[0]) heroTags[0].textContent='(The Coordinating Coordinator)';
   if(heroTags[1]) heroTags[1].textContent='(The Smiling One)';
   document.title = "A.M AFFAIRS '26 — 20/12/2026";
-  document.querySelectorAll('body *').forEach(node=>{
-    if(node.children.length) return;
-    if(node.textContent.includes('This is your go-to place for everything you need to know')) node.textContent='Following the solemnization of our marriage, out of immense love and joy, we humbly invite you to our Walīmatu - n - Nikāh.';
-  });
   const head = document.querySelector('head');
   if (head && !document.querySelector('meta[name="description"]')) {
     const meta = document.createElement('meta'); meta.name = 'description'; meta.content = "A.M AFFAIRS '26 — 20/12/2026"; head.append(meta);
@@ -390,6 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
   style.textContent += `footer>.field{background-color:#141078!important;background-image:radial-gradient(circle at 15% 27%,transparent 0 46px,rgba(209,172,80,.1) 47px 48px,transparent 49px 58px,rgba(209,172,80,.055) 59px 60px,transparent 61px),radial-gradient(circle at 84% 71%,transparent 0 59px,rgba(209,172,80,.085) 60px 61px,transparent 62px 72px,rgba(209,172,80,.05) 73px 74px,transparent 75px),radial-gradient(ellipse at 50% 48%,rgba(39,34,127,.82),transparent 68%),linear-gradient(105deg,#141078 0%,#211B7D 48%,#141078 100%)!important;color:#FFFFFF!important}footer>.field>.field-vignette{display:none!important}footer>.field .display{color:#D1AC50!important}footer>.field .footer-names,footer>.field .footer-names .footer-couple-name{color:#FFFFFF!important}footer>.field .footer-names+.footer-date{color:#FFFFFF!important}footer>.field .footer-names+.footer-date,footer>.field .footer-names+p{color:#FFFFFF!important}footer>.field .footer-names .footer-wedding-ring svg circle,footer>.field .footer-names .footer-wedding-ring svg path,footer>.field .footer-names .footer-wedding-ring svg polygon{stroke:#D1AC50!important}footer>.field .footer-names .footer-wedding-ring svg polygon{fill:#FFFFFF!important}footer>.field .footer-date,footer>.field .tag-pill,footer>.field .arabic{color:#D1AC50!important}footer>.field .tag-pill{border-color:rgba(209,172,80,.7)!important}footer>.field .field-vignette~*{color:#FFFFFF}`;
   style.textContent += `#access-card{position:relative;background-color:#141078!important;background-image:radial-gradient(circle at 12% 28%,transparent 0 54px,rgba(209,172,80,.09) 55px 56px,transparent 57px 68px,rgba(209,172,80,.045) 69px 70px,transparent 71px),radial-gradient(circle at 88% 72%,transparent 0 60px,rgba(209,172,80,.08) 61px 62px,transparent 63px 75px),radial-gradient(ellipse at 50% 45%,rgba(39,34,127,.85),transparent 68%),linear-gradient(110deg,#141078 0%,#211B7D 50%,#141078 100%)!important;color:#FFFFFF!important}#access-card .eyebrow{color:#D1AC50!important}#access-card h2{color:#FFFFFF!important}#access-card .muted{color:rgba(255,255,255,.86)!important}#access-card .outline-card{background:rgba(255,255,255,.97)!important;border:1px solid rgba(209,172,80,.78)!important;border-radius:18px;box-shadow:0 12px 32px rgba(7,6,50,.3)}#access-card .outline-card .btn-cta{background:#D1AC50!important;color:#141078!important;box-shadow:0 6px 20px rgba(209,172,80,.28)}#access-card .outline-card .btn-outline{border-color:#D1AC50!important;color:#D1AC50!important;background:#141078!important}#access-card .outline-card .btn-outline:hover{background:#D1AC50!important;color:#141078!important}.credit-tape{background-color:#141078!important;background-image:radial-gradient(circle at 15% 27%,transparent 0 46px,rgba(209,172,80,.1) 47px 48px,transparent 49px 58px,rgba(209,172,80,.055) 59px 60px,transparent 61px),radial-gradient(circle at 84% 71%,transparent 0 59px,rgba(209,172,80,.085) 60px 61px,transparent 62px 72px,rgba(209,172,80,.05) 73px 74px,transparent 75px),radial-gradient(ellipse at 50% 48%,rgba(39,34,127,.82),transparent 68%),linear-gradient(105deg,#141078 0%,#211B7D 48%,#141078 100%)!important;border-top:1px solid rgba(209,172,80,.48)!important}.credit-line{color:#FFFFFF!important;opacity:1!important;font-size:10px!important}.credit-line strong,.credit-line strong em{color:#D1AC50!important;font-size:10px!important}.credit-line strong:first-of-type em{font-size:10px!important}@media(max-width:560px){.credit-line,.credit-line strong,.credit-line strong em{font-size:9px!important}}`;
   document.head.append(style);
+  requestAnimationFrame(()=>document.documentElement.classList.add('am-page-ready'));
 
   // The reference hides the system cursor on desktop, so provide its heart cursor too.
   if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
