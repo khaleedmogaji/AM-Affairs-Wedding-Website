@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.curtain,#welcome').forEach(node=>node.remove());
   const capturedStaticHeart=[...document.querySelectorAll('#root div[style]')].find(node=>node.style.position==='fixed'&&node.style.zIndex==='999'&&node.style.pointerEvents==='none'&&node.querySelector('svg path[d^="M12 21s"]'));
   capturedStaticHeart?.remove();
   const welcomeMarkup='<div class="am-welcome-screen" role="dialog" aria-modal="true" aria-labelledby="am-welcome-title"><div class="am-welcome-content"><h1 id="am-welcome-title">A.M AFFAIRS \'26</h1><p class="am-welcome-subtitle">Walīmatu - n - Nikāh</p><p class="am-welcome-arabic" lang="ar" dir="rtl">بسم اللّه الرّحمن الرّحيم</p><p class="am-welcome-invitation">Following the solemnization of our marriage, out of immense love and joy, we humbly invite you to our Walīmatu - n - Nikāh.</p><p class="am-welcome-names">ADEKANMBI ABDULHAMEED <span>&amp;</span> OMOTOSHO MUTMAINNAH</p><p class="am-welcome-date">20/12/2026</p><button type="button" class="am-welcome-enter" aria-label="Enter the wedding website"><span class="am-welcome-arrow" aria-hidden="true">↓</span><small>TAP TO ENTER</small></button></div></div>';
   if(!document.querySelector('.am-welcome-screen')) document.body.insertAdjacentHTML('afterbegin',welcomeMarkup);
   const welcomeStyle=document.createElement('style');
   welcomeStyle.textContent='.am-welcome-screen{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;overflow:auto;padding:32px 24px;background-color:#141078;background-image:radial-gradient(circle,transparent 0 35px,rgba(209,172,80,.075) 36px 37px,transparent 38px 48px,rgba(209,172,80,.045) 49px 50px,transparent 51px 62px),linear-gradient(90deg,rgba(17,17,17,.38),transparent 24%,rgba(209,172,80,.07) 49.8%,rgba(255,255,255,.16) 50%,rgba(209,172,80,.07) 50.2%,transparent 76%,rgba(17,17,17,.38));background-size:180px 180px,100% 100%;transition:opacity .7s ease,visibility .7s ease}.am-welcome-screen:before{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;transform:translateX(-50%);background:linear-gradient(transparent,rgba(209,172,80,.38) 20%,rgba(255,255,255,.5) 50%,rgba(209,172,80,.38) 80%,transparent);box-shadow:0 0 18px rgba(209,172,80,.2);pointer-events:none}.am-welcome-screen.is-hidden{opacity:0;visibility:hidden;pointer-events:none}.am-welcome-content{position:relative;z-index:1;width:min(660px,100%);padding:12px 12px 4px;text-align:center;color:#FFFFFF}.am-welcome-content h1{margin:0;color:#FFFFFF;font:400 clamp(38px,7vw,72px)/1.12 NaughtyMonster,Fraunces,Georgia,serif;letter-spacing:.015em;text-shadow:0 3px 22px rgba(17,17,17,.3)}.am-welcome-subtitle{margin:4px 0 22px;color:#D1AC50;font:italic 500 clamp(20px,3vw,28px)/1.35 Caveat,cursive}.am-welcome-arabic{margin:0 auto 18px;color:#FFFFFF;font:400 clamp(26px,4vw,34px)/1.9 Amiri,serif}.am-welcome-invitation{max-width:590px;margin:0 auto;color:#FFFFFF;font:400 clamp(15px,1.8vw,18px)/1.85 Manrope,Arial,sans-serif;text-shadow:0 1px 8px rgba(17,17,17,.32)}.am-welcome-names{margin:21px 0 7px;color:#FFFFFF;font:600 clamp(12px,2vw,16px)/1.7 Manrope,Arial,sans-serif;letter-spacing:.055em}.am-welcome-names span{display:inline-block;margin:0 7px;color:#D1AC50;font:italic 24px Fraunces,Georgia,serif}.am-welcome-date{margin:5px 0 0;color:#D1AC50;font:700 11px Manrope,Arial,sans-serif;letter-spacing:.24em}.am-welcome-enter{display:flex;flex-direction:column;align-items:center;gap:8px;margin:32px auto 0;border:0;background:transparent;color:#D1AC50;cursor:pointer}.am-welcome-arrow{display:grid;place-items:center;width:62px;height:62px;border:1px solid rgba(209,172,80,.9);border-radius:50%;font:300 30px/1 Manrope,Arial,sans-serif;animation:am-welcome-bob 1.8s ease-in-out infinite}.am-welcome-enter small{color:#D1AC50;font:600 9px Manrope,Arial,sans-serif;letter-spacing:.22em}.am-welcome-enter:hover .am-welcome-arrow{background:rgba(209,172,80,.12);transform:translateY(3px)}@keyframes am-welcome-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}@media(max-height:650px){.am-welcome-content{padding:0}.am-welcome-subtitle{margin-bottom:12px}.am-welcome-arabic{margin-bottom:10px}.am-welcome-names{margin-top:12px}.am-welcome-enter{margin-top:18px}}@media(max-width:520px){.am-welcome-screen{padding:22px 18px}.am-welcome-content h1{font-size:clamp(35px,10vw,54px)}.am-welcome-invitation{font-size:14px}.am-welcome-names{font-size:11px;letter-spacing:.02em}.am-welcome-names span{margin:0 3px}}@media(prefers-reduced-motion:reduce){.am-welcome-screen,.am-welcome-arrow{transition:none;animation:none}}';
+  welcomeStyle.textContent += '.am-opening-curtain{position:fixed;inset:0;z-index:100002;pointer-events:none;overflow:hidden}.am-curtain-panel{position:absolute;inset:0 auto 0 0;width:50.2%;background-color:#141078;background-image:radial-gradient(circle,transparent 0 35px,rgba(209,172,80,.075) 36px 37px,transparent 38px 48px,rgba(209,172,80,.045) 49px 50px,transparent 51px 62px),linear-gradient(90deg,rgba(17,17,17,.3),transparent 70%);background-size:180px 180px,100% 100%;transition:transform 1.15s cubic-bezier(.76,0,.24,1);will-change:transform}.am-curtain-right{left:auto;right:0;transform-origin:right center;background-position:90px 0,100% 0}.am-curtain-left{transform-origin:left center}.am-curtain-seam{position:absolute;top:0;bottom:0;left:50%;width:2px;transform:translateX(-50%);background:linear-gradient(transparent,rgba(209,172,80,.55) 20%,rgba(255,255,255,.7) 50%,rgba(209,172,80,.55) 80%,transparent);box-shadow:0 0 18px rgba(209,172,80,.4);transition:opacity .35s ease .2s}.am-opening-curtain.is-opening .am-curtain-left{transform:translateX(-101%)}.am-opening-curtain.is-opening .am-curtain-right{transform:translateX(101%)}.am-opening-curtain.is-opening .am-curtain-seam{opacity:0}@media(prefers-reduced-motion:reduce){.am-curtain-panel{transition-duration:.3s}.am-curtain-seam{transition-duration:.15s}}';
   document.head.append(welcomeStyle);
   const welcomeScreen=document.querySelector('.am-welcome-screen');
   const weddingAudio=new Audio('assets/am-affairs-2026.mp3');
@@ -41,14 +43,29 @@ document.addEventListener('DOMContentLoaded', () => {
   weddingAudio.addEventListener('play',()=>updateAudioButton(true));
   weddingAudio.addEventListener('pause',()=>updateAudioButton(false));
   const startWeddingAudio=()=>{if(!weddingAudio.paused)return Promise.resolve();try{return weddingAudio.play().then(()=>updateAudioButton(true)).catch(()=>updateAudioButton(false));}catch(error){updateAudioButton(false);return Promise.reject(error);}};
+  let enteringWelcome=false;
   const enterWelcome=()=>{
+    if(enteringWelcome)return;
+    enteringWelcome=true;
     startWeddingAudio();
     if(window.location.hash) history.replaceState(null,'',window.location.pathname+window.location.search);
     window.scrollTo(0,0);
     document.documentElement.scrollTop=0;
     document.body.scrollTop=0;
-    welcomeScreen?.classList.add('is-hidden');
-    try{sessionStorage.setItem('am-affairs-welcome-dismissed','true');}catch{}
+    const curtain=document.createElement('div');
+    curtain.className='am-opening-curtain';
+    curtain.setAttribute('aria-hidden','true');
+    curtain.innerHTML='<span class="am-curtain-panel am-curtain-left"></span><span class="am-curtain-panel am-curtain-right"></span><span class="am-curtain-seam"></span>';
+    document.body.append(curtain);
+    requestAnimationFrame(()=>{
+      welcomeScreen?.classList.add('is-hidden');
+      requestAnimationFrame(()=>curtain.classList.add('is-opening'));
+    });
+    window.setTimeout(()=>{
+      curtain.remove();
+      try{sessionStorage.setItem('am-affairs-welcome-dismissed','true');}catch{}
+      enteringWelcome=false;
+    },1250);
   };
   try{if(sessionStorage.getItem('am-affairs-welcome-dismissed')==='true'){welcomeScreen?.classList.add('is-hidden');startWeddingAudio();}}catch{}
   const welcomeEnterButton=welcomeScreen?.querySelector('.am-welcome-enter');
@@ -150,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const siteCredit=document.querySelector('.credit-line');
   if(siteCredit) siteCredit.innerHTML='Developed by <strong><em>Khalid Mogaji</em></strong> · <strong><em>09167850300</em></strong> · © 2026';
   const allLeaves=[...document.querySelectorAll('body *')].filter(n=>n.children.length===0);
-  const footerHashtags=allLeaves.filter(n=>/FLOURISHEDHYACINTH|LEGALLYCHARTERED|HEARTYFREESIAS/.test(n.textContent));
+  const footerHashtags=allLeaves.filter(n=>/FLOURISHEDHYACINTH|LEGALLYCHARTERED|HEARTYFREESIAS/i.test(n.textContent));
   footerHashtags.forEach((el,i)=>el.textContent=["#GrammaticalManagement","#Abū/Umm'AbdilLāh",'#DinhoD-Simah'][i%3]);
   const oldVerse=[...document.querySelectorAll('body *')].find(n=>n.children.length===0&&n.textContent.includes('And of His signs is that He created'));
   const verseSection=oldVerse?.closest('section');
@@ -223,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if(cashPanel){
     const panelBody=cashPanel.querySelector('.panel-body');
     if(panelBody){
-      panelBody.innerHTML='<p class="bank-transfer-intro">Send your cash gift by bank transfer directly to the account below. Enter your name as the transfer narration so we can identify your gift.</p><div class="bank-gift-selected" hidden><p><span>Selected gift</span><strong class="bank-gift-name"></strong></p><p><span>Transfer amount</span><strong class="bank-gift-amount"></strong></p></div><div class="bank-transfer-card"><p><span>Bank</span><strong>OPay</strong></p><p><span>Account name</span><strong>Adekanbi Abdulhameed Alao</strong></p><p class="bank-account-row"><span>Account number</span><strong>9128808318</strong></p><button type="button" class="copy-account">Copy account number</button></div><p class="bank-transfer-note">After transferring, please keep your bank confirmation. The couple will confirm the gift when it appears in their account.</p><p class="bank-copy-status" role="status" aria-live="polite"></p>';
+      panelBody.innerHTML='<p class="bank-transfer-intro">Send your cash gift by bank transfer directly to the account below. Enter your name as the transfer narration so we can identify your gift.</p><div class="bank-gift-selected" hidden><p><span>Selected gift</span><strong class="bank-gift-name"></strong></p><p><span>Transfer amount</span><strong class="bank-gift-amount"></strong></p></div><div class="bank-transfer-card"><p><span>Bank</span><strong>OPay</strong></p><p><span>Account name</span><strong>ADEKANMBI ABDULHAMEED ALAO</strong></p><p class="bank-account-row"><span>Account number</span><strong>9128808318</strong></p><button type="button" class="copy-account">Copy account number</button></div><p class="bank-transfer-note">After transferring, please keep your bank confirmation. The couple will confirm the gift when it appears in their account.</p><p class="bank-copy-status" role="status" aria-live="polite"></p>';
       const copyButton=panelBody.querySelector('.copy-account');
       copyButton.addEventListener('click',async()=>{
         try{
