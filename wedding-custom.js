@@ -172,6 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
       "Vote of thanks"
     ];
     if(!document.querySelector('#programme')) location.insertAdjacentHTML('afterend',`<section id="programme" class="programme-section" aria-labelledby="programme-title"><div class="programme-inner"><p class="eyebrow">ORDER OF THE DAY</p><h2 id="programme-title">Order of the Day</h2><ol class="programme-list">${programmeItems.map((item,index)=>`<li class="programme-item"><span class="programme-number">${String(index+1).padStart(2,'0')}</span><span class="programme-label">${item}</span></li>`).join('')}</ol></div></section>`);
+    const programmeTitle=document.querySelector('#programme-title');
+    if(programmeTitle&&!document.querySelector('#programme-mc')) programmeTitle.insertAdjacentHTML('afterend','<p id="programme-mc" style="margin:-18px auto 30px;text-align:center;color:#141078;font:500 clamp(15px,2vw,19px)/1.7 var(--body)">MC: Ustādh Shamsudeen Kharashi <span lang="ar" dir="rtl">حفظه اللّه</span></p>');
   }
 
   const contacts = document.querySelector('#contacts');
